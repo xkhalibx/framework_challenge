@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="vader">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Paws &amp; Clover Dog Rescue</title>
+  <link rel="stylesheet" href="https://unpkg.com/normalize.css/normalize.css" />
+  <link
+    id="sakura-theme"
+    rel="stylesheet"
+    href="https://unpkg.com/sakura.css/css/sakura-vader.css"
+  />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <header>
+    <h1>🐾 Paws &amp; Clover Dog Rescue</h1>
+    <p><em>Connecting loving homes with rescue dogs in need.</em></p>
+    <nav>
+      <a href="#adopt">Adoptable Dogs</a>
+      <a href="#process">Adoption Process</a>
+      <a href="#apply">Apply to Adopt</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+
+    <div class="theme-bar">
+      <label for="themeSelect"><strong>Theme Mode:</strong></label>
+      <select id="themeSelect" onchange="switchTheme(this.value)">
+        <option value="vader" selected>Vader (Dark Crimson)</option>
+        <option value="dark">Dark</option>
+        <option value="earthly">Earthly</option>
+        <option value="light">Light (Default)</option>
+      </select>
+    </div>
+
+    <hr />
+  </header>
+
+  <main>
+    <!-- Mission Callout -->
+    <section>
+      <blockquote>
+        "Every dog deserves a warm bed, a full bowl, and a second chance. Browse our available pups below or submit an adoption inquiry today."
+      </blockquote>
+    </section>
+
+    <!-- Adoptable Dogs Section -->
+    <section id="adopt">
+      <h2>Available Dogs for Adoption</h2>
+      <p>Filter by size to find the right companion for your household:</p>
+
+      <label for="sizeFilter"><strong>Filter by Size:</strong></label>
+      <select id="sizeFilter" onchange="filterDogs()">
+        <option value="all">All Sizes</option>
+        <option value="Small">Small (Under 25 lbs)</option>
+        <option value="Medium">Medium (25–55 lbs)</option>
+        <option value="Large">Large (55+ lbs)</option>
+      </select>
+
+      <table id="dogTable">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Breed &amp; Age</th>
+            <th>Size</th>
+            <th>Temperament</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr data-size="Medium">
+            <td><strong>Barnaby</strong></td>
+            <td>Beagle Mix &bull; 3 yrs</td>
+            <td>Medium</td>
+            <td>Curious, gentle, great with kids</td>
+            <td><mark>Available</mark></td>
+          </tr>
+          <tr data-size="Large">
+            <td><strong>Maple</strong></td>
+            <td>Golden Retriever Mix &bull; 5 yrs</td>
+            <td>Large</td>
+            <td>Calm, affectionate, house-trained</td>
+            <td><mark>Available</mark></td>
+          </tr>
+          <tr data-size="Small">
+            <td><strong>Pip</strong></td>
+            <td>Terrier Mix &bull; 1 yr</td>
+            <td>Small</td>
+            <td>Playful, energetic, loves toys</td>
+            <td><mark>Available</mark></td>
+          </tr>
+          <tr data-size="Large">
+            <td><strong>Duke</strong></td>
+            <td>German Shepherd Mix &bull; 4 yrs</td>
+            <td>Large</td>
+            <td>Loyal, smart, best as only pet</td>
+            <td><em>Meet &amp; Greet Pending</em></td>
+          </tr>
+          <tr data-size="Small">
+            <td><strong>Clover</strong></td>
+            <td>Dachshund Mix &bull; 6 yrs</td>
+            <td>Small</td>
+            <td>Senior sweetheart, lap dog</td>
+            <td><mark>Available</mark></td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <hr />
+
+    <!-- Adoption Process -->
+    <section id="process">
+      <h2>How Adoption Works</h2>
+      <ol>
+        <li><strong>Submit an Application:</strong> Fill out the short form below telling us about your home and lifestyle.</li>
+        <li><strong>Virtual Chat:</strong> Our volunteer coordinator will call within 48 hours to discuss your match.</li>
+        <li><strong>Meet &amp; Greet:</strong> Visit our shelter (or foster home) to meet your prospective pup in person.</li>
+        <li><strong>Take Your Best Friend Home:</strong> Complete the $175 adoption fee (covers vaccinations, microchip, and spay/neuter).</li>
+      </ol>
+    </section>
+
+    <hr />
+
+    <!-- Interactive Adoption Application Form -->
+    <section id="apply">
+      <h2>Adoption Inquiry Form</h2>
+      <form id="adoptionForm" onsubmit="handleApplication(event)">
+        <label for="applicantName">Full Name</label>
+        <input type="text" id="applicantName" placeholder="Jordan Taylor" required />
+
+        <label for="applicantEmail">Email Address</label>
+        <input type="email" id="applicantEmail" placeholder="jordan@example.com" required />
+
+        <label for="dogChoice">Which dog are you interested in?</label>
+        <select id="dogChoice" required>
+          <option value="">-- Select a Dog --</option>
+          <option value="Barnaby">Barnaby (Beagle Mix)</option>
+          <option value="Maple">Maple (Golden Retriever Mix)</option>
+          <option value="Pip">Pip (Terrier Mix)</option>
+          <option value="Duke">Duke (German Shepherd Mix)</option>
+          <option value="Clover">Clover (Dachshund Mix)</option>
+        </select>
+
+        <label for="housingType">Living Situation</label>
+        <select id="housingType">
+          <option value="House with fenced yard">House with fenced yard</option>
+          <option value="House without fence">House without fence</option>
+          <option value="Apartment / Condo">Apartment / Condo</option>
+        </select>
+
+        <label for="notes">Tell us a bit about your home &amp; experience with dogs</label>
+        <textarea id="notes" rows="4" placeholder="Other pets, daily schedule, yard access..." required></textarea>
+
+        <button type="submit">Submit Adoption Application</button>
+      </form>
+
+      <div id="confirmationMessage" hidden>
+        <blockquote>
+          <strong>Application Received!</strong> Thank you, <span id="confirmName"></span>. Our team will review your inquiry for <strong id="confirmDog"></strong> and reach out within 48 hours.
+        </blockquote>
+      </div>
+    </section>
+
+    <hr />
+
+    <!-- FAQ Section using Semantic Details/Summary -->
+    <section id="faq">
+      <h2>Frequently Asked Questions</h2>
+
+      <details>
+        <summary><strong>What is included in the adoption fee?</strong></summary>
+        <p>All dogs are spayed or neutered, up-to-date on core vaccinations, heartworm tested, and microchipped prior to going home.</p>
+      </details>
+
+      <details>
+        <summary><strong>Can I adopt if I live in an apartment?</strong></summary>
+        <p>Yes! Many of our dogs thrive in apartments as long as they receive regular daily walks and mental enrichment.</p>
+      </details>
+
+      <details>
+        <summary><strong>Do you offer foster-to-adopt trials?</strong></summary>
+        <p>We offer a 14-day foster-to-adopt trial for households with existing dogs to ensure everyone gets along comfortably.</p>
+      </details>
+    </section>
+  </main>
+
+  <footer>
+    <hr />
+    <p><small>&copy; 2026 Paws &amp; Clover Dog Rescue &bull; Built with semantic HTML5 &amp; Sakura CSS.</small></p>
+  </footer>
+
+  <script>
+    const THEMES = {
+      light: "https://unpkg.com/sakura.css/css/sakura.css",
+      dark: "https://unpkg.com/sakura.css/css/sakura-dark.css",
+      earthly: "https://unpkg.com/sakura.css/css/sakura-earthly.css",
+      vader: "https://unpkg.com/sakura.css/css/sakura-vader.css"
+    };
+
+    function switchTheme(themeName) {
+      const selected = THEMES[themeName] ? themeName : "vader";
+      const linkEl = document.getElementById("sakura-theme");
+      const selectEl = document.getElementById("themeSelect");
+
+      linkEl.href = THEMES[selected];
+      document.documentElement.setAttribute("data-theme", selected);
+      if (selectEl) {
+        selectEl.value = selected;
+      }
+
+      try {
+        localStorage.setItem("sakuraTheme", selected);
+      } catch (e) {
+        // Ignore storage errors in restricted contexts
+      }
+    }
+
+    // Restore saved theme on page load
+    (function initTheme() {
+      try {
+        const saved = localStorage.getItem("sakuraTheme");
+        if (saved && THEMES[saved]) {
+          switchTheme(saved);
+        }
+      } catch (e) {
+        // Ignore storage errors
+      }
+    })();
+
+    function filterDogs() {
+      const selectedSize = document.getElementById("sizeFilter").value;
+      const rows = document.querySelectorAll("#dogTable tbody tr");
+
+      rows.forEach((row) => {
+        const dogSize = row.getAttribute("data-size");
+        row.hidden = !(selectedSize === "all" || dogSize === selectedSize);
+      });
+    }
+
+    function handleApplication(event) {
+      event.preventDefault();
+      const name = document.getElementById("applicantName").value;
+      const dog = document.getElementById("dogChoice").value;
+
+      document.getElementById("confirmName").textContent = name;
+      document.getElementById("confirmDog").textContent = dog;
+      document.getElementById("confirmationMessage").hidden = false;
+      document.getElementById("adoptionForm").reset();
+    }
+  </script>
+
+</body>
+</html>

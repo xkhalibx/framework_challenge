@@ -1,0 +1,82 @@
+/* Classless tag-based styling with mode-aware accents */
+html {
+  scroll-behavior: smooth;
+  --accent: #da4453;
+  --mark-bg: #da4453;
+  --mark-fg: #120c0e;
+}
+
+html[data-theme="light"] {
+  --accent: #1d7484;
+  --mark-bg: #fff3a8;
+  --mark-fg: #1a1a1a;
+}
+
+html[data-theme="dark"] {
+  --accent: #1d7484;
+  --mark-bg: #e2c044;
+  --mark-fg: #1a1a1a;
+}
+
+html[data-theme="earthly"] {
+  --accent: #7a8b3d;
+  --mark-bg: #e8dfa2;
+  --mark-fg: #2b261d;
+}
+
+html[data-theme="vader"] {
+  --accent: #da4453;
+  --mark-bg: #da4453;
+  --mark-fg: #120c0e;
+}
+
+header {
+  text-align: center;
+  padding-top: 1rem;
+}
+
+nav {
+  margin-top: 1rem;
+}
+
+nav a {
+  margin: 0 0.5rem;
+  font-weight: 600;
+}
+
+.theme-bar {
+  margin-top: 1rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.theme-bar select {
+  margin-bottom: 0;
+}
+
+table {
+  margin-top: 1rem;
+}
+
+mark {
+  padding: 0.15rem 0.4rem;
+  border-radius: 4px;
+  background-color: var(--mark-bg);
+  color: var(--mark-fg);
+}
+
+details {
+  margin-bottom: 0.75rem;
+  padding: 0.5rem 0.75rem;
+  border-left: 3px solid var(--accent);
+}
+
+summary {
+  cursor: pointer;
+}
+
+footer {
+  text-align: center;
+  margin-top: 2rem;
+}
